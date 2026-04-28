@@ -9,38 +9,294 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ScholarsRouteImport } from './routes/scholars'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PrdRouteImport } from './routes/prd'
+import { Route as MentorsRouteImport } from './routes/mentors'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as IdeationRouteImport } from './routes/ideation'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScholarProjectRouteImport } from './routes/scholar.project'
+import { Route as MentorRequestsRouteImport } from './routes/mentor.requests'
+import { Route as MentorProfileRouteImport } from './routes/mentor.profile'
+import { Route as MentorActiveRouteImport } from './routes/mentor.active'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminScholarsRouteImport } from './routes/admin.scholars'
+import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
+import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
+import { Route as AdminConsultantsRouteImport } from './routes/admin.consultants'
 
+const ScholarsRoute = ScholarsRouteImport.update({
+  id: '/scholars',
+  path: '/scholars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrdRoute = PrdRouteImport.update({
+  id: '/prd',
+  path: '/prd',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorsRoute = MentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IdeationRoute = IdeationRouteImport.update({
+  id: '/ideation',
+  path: '/ideation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScholarProjectRoute = ScholarProjectRouteImport.update({
+  id: '/scholar/project',
+  path: '/scholar/project',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorRequestsRoute = MentorRequestsRouteImport.update({
+  id: '/mentor/requests',
+  path: '/mentor/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorProfileRoute = MentorProfileRouteImport.update({
+  id: '/mentor/profile',
+  path: '/mentor/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorActiveRoute = MentorActiveRouteImport.update({
+  id: '/mentor/active',
+  path: '/mentor/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScholarsRoute = AdminScholarsRouteImport.update({
+  id: '/scholars',
+  path: '/scholars',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRequestsRoute = AdminRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMentorsRoute = AdminMentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConsultantsRoute = AdminConsultantsRouteImport.update({
+  id: '/consultants',
+  path: '/consultants',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/ideation': typeof IdeationRoute
+  '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
+  '/scholars': typeof ScholarsRoute
+  '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scholars': typeof AdminScholarsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/ideation': typeof IdeationRoute
+  '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
+  '/scholars': typeof ScholarsRoute
+  '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scholars': typeof AdminScholarsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/ideation': typeof IdeationRoute
+  '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
+  '/scholars': typeof ScholarsRoute
+  '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scholars': typeof AdminScholarsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/admin/consultants'
+    | '/admin/mentors'
+    | '/admin/requests'
+    | '/admin/scholars'
+    | '/admin/settings'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/admin/consultants'
+    | '/admin/mentors'
+    | '/admin/requests'
+    | '/admin/scholars'
+    | '/admin/settings'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/admin/consultants'
+    | '/admin/mentors'
+    | '/admin/requests'
+    | '/admin/scholars'
+    | '/admin/settings'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  IdeationRoute: typeof IdeationRoute
+  LoginRoute: typeof LoginRoute
+  MentorsRoute: typeof MentorsRoute
+  PrdRoute: typeof PrdRoute
+  ProjectsRoute: typeof ProjectsRoute
+  ScholarsRoute: typeof ScholarsRoute
+  MentorActiveRoute: typeof MentorActiveRoute
+  MentorProfileRoute: typeof MentorProfileRoute
+  MentorRequestsRoute: typeof MentorRequestsRoute
+  ScholarProjectRoute: typeof ScholarProjectRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/scholars': {
+      id: '/scholars'
+      path: '/scholars'
+      fullPath: '/scholars'
+      preLoaderRoute: typeof ScholarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prd': {
+      id: '/prd'
+      path: '/prd'
+      fullPath: '/prd'
+      preLoaderRoute: typeof PrdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentors': {
+      id: '/mentors'
+      path: '/mentors'
+      fullPath: '/mentors'
+      preLoaderRoute: typeof MentorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ideation': {
+      id: '/ideation'
+      path: '/ideation'
+      fullPath: '/ideation'
+      preLoaderRoute: typeof IdeationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +304,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scholar/project': {
+      id: '/scholar/project'
+      path: '/scholar/project'
+      fullPath: '/scholar/project'
+      preLoaderRoute: typeof ScholarProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/requests': {
+      id: '/mentor/requests'
+      path: '/mentor/requests'
+      fullPath: '/mentor/requests'
+      preLoaderRoute: typeof MentorRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/profile': {
+      id: '/mentor/profile'
+      path: '/mentor/profile'
+      fullPath: '/mentor/profile'
+      preLoaderRoute: typeof MentorProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/active': {
+      id: '/mentor/active'
+      path: '/mentor/active'
+      fullPath: '/mentor/active'
+      preLoaderRoute: typeof MentorActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/scholars': {
+      id: '/admin/scholars'
+      path: '/scholars'
+      fullPath: '/admin/scholars'
+      preLoaderRoute: typeof AdminScholarsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/requests': {
+      id: '/admin/requests'
+      path: '/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AdminRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/mentors': {
+      id: '/admin/mentors'
+      path: '/mentors'
+      fullPath: '/admin/mentors'
+      preLoaderRoute: typeof AdminMentorsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/consultants': {
+      id: '/admin/consultants'
+      path: '/consultants'
+      fullPath: '/admin/consultants'
+      preLoaderRoute: typeof AdminConsultantsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminConsultantsRoute: typeof AdminConsultantsRoute
+  AdminMentorsRoute: typeof AdminMentorsRoute
+  AdminRequestsRoute: typeof AdminRequestsRoute
+  AdminScholarsRoute: typeof AdminScholarsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminConsultantsRoute: AdminConsultantsRoute,
+  AdminMentorsRoute: AdminMentorsRoute,
+  AdminRequestsRoute: AdminRequestsRoute,
+  AdminScholarsRoute: AdminScholarsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  IdeationRoute: IdeationRoute,
+  LoginRoute: LoginRoute,
+  MentorsRoute: MentorsRoute,
+  PrdRoute: PrdRoute,
+  ProjectsRoute: ProjectsRoute,
+  ScholarsRoute: ScholarsRoute,
+  MentorActiveRoute: MentorActiveRoute,
+  MentorProfileRoute: MentorProfileRoute,
+  MentorRequestsRoute: MentorRequestsRoute,
+  ScholarProjectRoute: ScholarProjectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
