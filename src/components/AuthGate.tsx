@@ -9,8 +9,8 @@ export function AuthGate({ children, allow }: { children: React.ReactNode; allow
   const path = useRouterState({ select: r => r.location.pathname });
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user && path !== "/login") navigate({ to: "/login" });
-    else if (user && allow && !allow.includes(user.role)) navigate({ to: roleHome(user.role) });
+    if (!user && path !== "/login") navigate({ to: "/login" as any });
+    else if (user && allow && !allow.includes(user.role)) navigate({ to: roleHome(user.role) as any });
   }, [user, path, allow, navigate]);
   if (!user && path !== "/login") return null;
   if (user && allow && !allow.includes(user.role)) return null;

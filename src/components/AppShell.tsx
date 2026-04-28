@@ -66,7 +66,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/50">{roleLabel}</div>
             </div>
             <Avatar initials={user.name.split(" ").map(p=>p[0]).slice(0,2).join("")} size={34} color="var(--teal)" />
-            <button onClick={() => { logout(); navigate({ to: "/login" }); }} className="p-1.5 hover:bg-white/10" title="Sign out" style={{ borderRadius: 2 }}>
+            <button onClick={() => { logout(); navigate({ to: "/login" as any }); }} className="p-1.5 hover:bg-white/10" title="Sign out" style={{ borderRadius: 2 }}>
               <LogOut className="w-4 h-4" />
             </button>
           </div>
