@@ -10,13 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ScholarsRouteImport } from './routes/scholars'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PrdRouteImport } from './routes/prd'
+import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IdeationRouteImport } from './routes/ideation'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScholarProjectRouteImport } from './routes/scholar.project'
+import { Route as MentorRequestsRouteImport } from './routes/mentor.requests'
+import { Route as MentorProfileRouteImport } from './routes/mentor.profile'
+import { Route as MentorActiveRouteImport } from './routes/mentor.active'
 
 const ScholarsRoute = ScholarsRouteImport.update({
   id: '/scholars',
   path: '/scholars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrdRoute = PrdRouteImport.update({
+  id: '/prd',
+  path: '/prd',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorsRoute = MentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -34,39 +56,121 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScholarProjectRoute = ScholarProjectRouteImport.update({
+  id: '/scholar/project',
+  path: '/scholar/project',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorRequestsRoute = MentorRequestsRouteImport.update({
+  id: '/mentor/requests',
+  path: '/mentor/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorProfileRoute = MentorProfileRouteImport.update({
+  id: '/mentor/profile',
+  path: '/mentor/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorActiveRoute = MentorActiveRouteImport.update({
+  id: '/mentor/active',
+  path: '/mentor/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
   '/scholars': typeof ScholarsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
   '/scholars': typeof ScholarsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
+  '/mentors': typeof MentorsRoute
+  '/prd': typeof PrdRoute
+  '/projects': typeof ProjectsRoute
   '/scholars': typeof ScholarsRoute
+  '/mentor/active': typeof MentorActiveRoute
+  '/mentor/profile': typeof MentorProfileRoute
+  '/mentor/requests': typeof MentorRequestsRoute
+  '/scholar/project': typeof ScholarProjectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ideation' | '/login' | '/scholars'
+  fullPaths:
+    | '/'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ideation' | '/login' | '/scholars'
-  id: '__root__' | '/' | '/ideation' | '/login' | '/scholars'
+  to:
+    | '/'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
+  id:
+    | '__root__'
+    | '/'
+    | '/ideation'
+    | '/login'
+    | '/mentors'
+    | '/prd'
+    | '/projects'
+    | '/scholars'
+    | '/mentor/active'
+    | '/mentor/profile'
+    | '/mentor/requests'
+    | '/scholar/project'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IdeationRoute: typeof IdeationRoute
   LoginRoute: typeof LoginRoute
+  MentorsRoute: typeof MentorsRoute
+  PrdRoute: typeof PrdRoute
+  ProjectsRoute: typeof ProjectsRoute
   ScholarsRoute: typeof ScholarsRoute
+  MentorActiveRoute: typeof MentorActiveRoute
+  MentorProfileRoute: typeof MentorProfileRoute
+  MentorRequestsRoute: typeof MentorRequestsRoute
+  ScholarProjectRoute: typeof ScholarProjectRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +180,27 @@ declare module '@tanstack/react-router' {
       path: '/scholars'
       fullPath: '/scholars'
       preLoaderRoute: typeof ScholarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prd': {
+      id: '/prd'
+      path: '/prd'
+      fullPath: '/prd'
+      preLoaderRoute: typeof PrdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentors': {
+      id: '/mentors'
+      path: '/mentors'
+      fullPath: '/mentors'
+      preLoaderRoute: typeof MentorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -99,6 +224,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scholar/project': {
+      id: '/scholar/project'
+      path: '/scholar/project'
+      fullPath: '/scholar/project'
+      preLoaderRoute: typeof ScholarProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/requests': {
+      id: '/mentor/requests'
+      path: '/mentor/requests'
+      fullPath: '/mentor/requests'
+      preLoaderRoute: typeof MentorRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/profile': {
+      id: '/mentor/profile'
+      path: '/mentor/profile'
+      fullPath: '/mentor/profile'
+      preLoaderRoute: typeof MentorProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor/active': {
+      id: '/mentor/active'
+      path: '/mentor/active'
+      fullPath: '/mentor/active'
+      preLoaderRoute: typeof MentorActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -106,7 +259,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IdeationRoute: IdeationRoute,
   LoginRoute: LoginRoute,
+  MentorsRoute: MentorsRoute,
+  PrdRoute: PrdRoute,
+  ProjectsRoute: ProjectsRoute,
   ScholarsRoute: ScholarsRoute,
+  MentorActiveRoute: MentorActiveRoute,
+  MentorProfileRoute: MentorProfileRoute,
+  MentorRequestsRoute: MentorRequestsRoute,
+  ScholarProjectRoute: ScholarProjectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
