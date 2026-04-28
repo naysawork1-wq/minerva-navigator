@@ -2,8 +2,9 @@
 import { useEffect, useSyncExternalStore } from "react";
 import {
   DEMO_USERS, SEED_SCHOLARS, SEED_MENTORS, SEED_PROJECTS, SEED_REQUESTS, DEFAULT_MILESTONES,
+  SEED_WORK_LOGS, SEED_WORK_LOG_COMMENTS,
 } from "./mockData";
-import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track } from "./types";
+import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track, WorkLog, WorkLogComment } from "./types";
 
 const KEY = "minerva-store-v1";
 
@@ -14,6 +15,8 @@ interface State {
   projects: Project[];
   requests: MentorRequest[];
   milestonesByScholar: Record<string, Milestone[]>;
+  workLogs: WorkLog[];
+  workLogComments: WorkLogComment[];
   airtable: { apiKey: string; baseId: string; tableName: string } | null;
   settings: {
     aiModel: string;
@@ -30,6 +33,8 @@ const defaultState = (): State => ({
   projects: SEED_PROJECTS,
   requests: SEED_REQUESTS,
   milestonesByScholar: {},
+  workLogs: SEED_WORK_LOGS,
+  workLogComments: SEED_WORK_LOG_COMMENTS,
   airtable: null,
   settings: {
     aiModel: "gpt-4o-mini",
@@ -159,6 +164,31 @@ export function toggleMilestone(scholarId: string, milestoneId: string) {
   const cur = state.milestonesByScholar[scholarId] ?? DEFAULT_MILESTONES;
   const next = cur.map(m => m.id === milestoneId ? { ...m, done: !m.done } : m);
   store.set({ milestonesByScholar: { ...state.milestonesByScholar, [scholarId]: next } });
+}
+
+// --- Work logs ---
+export function addWorkLog(log: Omit<WorkLog, "id" | "createdAt">) {
+  const w: WorkLog = { ...log, id: `wl-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, createdAt: Date.now() };
+  store.set({ workLogs: [...state.workLogs, w] });
+  return w;
+}
+export function updateWorkLog(id: string, patch: Partial<WorkLog>) {
+  store.set({ workLogs: state.workLogs.map(w => w.id === id ? { ...w, ...patch } : w) });
+}
+export function deleteWorkLog(id: string) {
+  store.set({
+    workLogs: state.workLogs.filter(w => w.id !== id),
+    workLogComments: state.workLogComments.filter(c => c.logId !== id),
+  });
+}
+export function addWorkLogComment(c: Omit<WorkLogComment, "id" | "timestamp">) {
+  const cm: WorkLogComment = { ...c, id: `wlc-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, timestamp: Date.now() };
+  store.set({ workLogComments: [...state.workLogComments, cm] });
+  return cm;
+}
+export function projectProgressFromLogs(projectId: string): number {
+  const total = state.workLogs.filter(w => w.projectId === projectId).length;
+  return Math.min(100, Math.round((total / 20) * 100));
 }
 
 // --- Settings / airtable ---

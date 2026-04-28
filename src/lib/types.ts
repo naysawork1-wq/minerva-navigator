@@ -80,3 +80,36 @@ export interface Milestone {
   text: string;
   done: boolean;
 }
+
+export type WorkLogTag = "Research" | "Build" | "Testing" | "Writing" | "Mentor Session";
+export type WorkLogStatus = "Completed" | "In Progress";
+
+export interface WorkLogAttachment {
+  id: string;
+  name: string;
+  size?: string;
+}
+
+export interface WorkLogComment {
+  id: string;
+  logId: string;
+  userId: string;
+  userName: string;
+  role: "mentor" | "consultant";
+  comment: string;
+  timestamp: number;
+}
+
+export interface WorkLog {
+  id: string;
+  scholarId: string;
+  projectId: string;
+  date: string; // ISO yyyy-mm-dd
+  title: string;
+  description: string;
+  hoursSpent: number;
+  tags: WorkLogTag[];
+  status: WorkLogStatus;
+  attachments: WorkLogAttachment[];
+  createdAt: number;
+}

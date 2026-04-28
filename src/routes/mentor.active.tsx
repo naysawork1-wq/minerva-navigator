@@ -7,7 +7,8 @@ import { useStore } from "@/lib/store";
 import { Modal } from "@/components/Modal";
 import { toast } from "sonner";
 import { timeAgo } from "@/lib/utils";
-import { ClipboardList, FileText } from "lucide-react";
+import { ClipboardList, FileText, BookOpen } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/mentor/active")({
   component: () => (<AuthGate allow={["mentor"]}><AppShell><Page/></AppShell></AuthGate>),
@@ -33,8 +34,9 @@ function Page() {
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {p.techStack.slice(0,5).map(t => <span key={t} className="text-[10px] bg-cream border border-[#E4DFD3] px-2 py-0.5" style={{ borderRadius: 2 }}>{t}</span>)}
               </div>
-              <div className="flex gap-2 pt-3 border-t border-[#E4DFD3]">
-                <button className="btn-teal" onClick={() => { setLogging(p.id); setDate(""); setSummary(""); }}><ClipboardList className="w-4 h-4"/> Log session</button>
+              <div className="flex flex-wrap gap-2 pt-3 border-t border-[#E4DFD3]">
+                <Link to="/mentor/logs/$projectId" params={{ projectId: p.id }} className="btn-teal"><BookOpen className="w-4 h-4"/> View logs</Link>
+                <button className="btn-ghost" onClick={() => { setLogging(p.id); setDate(""); setSummary(""); }}><ClipboardList className="w-4 h-4"/> Log session</button>
                 <button className="btn-ghost" onClick={() => setBrief(p.id)}><FileText className="w-4 h-4"/> View brief</button>
               </div>
             </div>
