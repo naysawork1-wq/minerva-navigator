@@ -27,6 +27,7 @@ import { Route as AdminScholarsRouteImport } from './routes/admin.scholars'
 import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
 import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
 import { Route as AdminConsultantsRouteImport } from './routes/admin.consultants'
+import { Route as ProjectsProjectIdProgressRouteImport } from './routes/projects.$projectId.progress'
 import { Route as MentorLogsProjectIdRouteImport } from './routes/mentor.logs.$projectId'
 
 const ScholarsRoute = ScholarsRouteImport.update({
@@ -119,6 +120,12 @@ const AdminConsultantsRoute = AdminConsultantsRouteImport.update({
   path: '/consultants',
   getParentRoute: () => AdminRoute,
 } as any)
+const ProjectsProjectIdProgressRoute =
+  ProjectsProjectIdProgressRouteImport.update({
+    id: '/$projectId/progress',
+    path: '/$projectId/progress',
+    getParentRoute: () => ProjectsRoute,
+  } as any)
 const MentorLogsProjectIdRoute = MentorLogsProjectIdRouteImport.update({
   id: '/mentor/logs/$projectId',
   path: '/mentor/logs/$projectId',
@@ -132,7 +139,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mentors': typeof MentorsRoute
   '/prd': typeof PrdRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
   '/admin/mentors': typeof AdminMentorsRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/scholar/project': typeof ScholarProjectRoute
   '/scholar/work': typeof ScholarWorkRoute
   '/mentor/logs/$projectId': typeof MentorLogsProjectIdRoute
+  '/projects/$projectId/progress': typeof ProjectsProjectIdProgressRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -153,7 +161,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mentors': typeof MentorsRoute
   '/prd': typeof PrdRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
   '/admin/mentors': typeof AdminMentorsRoute
@@ -166,6 +174,7 @@ export interface FileRoutesByTo {
   '/scholar/project': typeof ScholarProjectRoute
   '/scholar/work': typeof ScholarWorkRoute
   '/mentor/logs/$projectId': typeof MentorLogsProjectIdRoute
+  '/projects/$projectId/progress': typeof ProjectsProjectIdProgressRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -175,7 +184,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mentors': typeof MentorsRoute
   '/prd': typeof PrdRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
   '/admin/mentors': typeof AdminMentorsRoute
@@ -188,6 +197,7 @@ export interface FileRoutesById {
   '/scholar/project': typeof ScholarProjectRoute
   '/scholar/work': typeof ScholarWorkRoute
   '/mentor/logs/$projectId': typeof MentorLogsProjectIdRoute
+  '/projects/$projectId/progress': typeof ProjectsProjectIdProgressRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +221,7 @@ export interface FileRouteTypes {
     | '/scholar/project'
     | '/scholar/work'
     | '/mentor/logs/$projectId'
+    | '/projects/$projectId/progress'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +243,7 @@ export interface FileRouteTypes {
     | '/scholar/project'
     | '/scholar/work'
     | '/mentor/logs/$projectId'
+    | '/projects/$projectId/progress'
   id:
     | '__root__'
     | '/'
@@ -253,6 +265,7 @@ export interface FileRouteTypes {
     | '/scholar/project'
     | '/scholar/work'
     | '/mentor/logs/$projectId'
+    | '/projects/$projectId/progress'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -262,7 +275,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MentorsRoute: typeof MentorsRoute
   PrdRoute: typeof PrdRoute
-  ProjectsRoute: typeof ProjectsRoute
+  ProjectsRoute: typeof ProjectsRouteWithChildren
   ScholarsRoute: typeof ScholarsRoute
   MentorActiveRoute: typeof MentorActiveRoute
   MentorProfileRoute: typeof MentorProfileRoute
@@ -400,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminConsultantsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/projects/$projectId/progress': {
+      id: '/projects/$projectId/progress'
+      path: '/$projectId/progress'
+      fullPath: '/projects/$projectId/progress'
+      preLoaderRoute: typeof ProjectsProjectIdProgressRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/mentor/logs/$projectId': {
       id: '/mentor/logs/$projectId'
       path: '/mentor/logs/$projectId'
@@ -428,6 +448,18 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface ProjectsRouteChildren {
+  ProjectsProjectIdProgressRoute: typeof ProjectsProjectIdProgressRoute
+}
+
+const ProjectsRouteChildren: ProjectsRouteChildren = {
+  ProjectsProjectIdProgressRoute: ProjectsProjectIdProgressRoute,
+}
+
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
+  ProjectsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
@@ -435,7 +467,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MentorsRoute: MentorsRoute,
   PrdRoute: PrdRoute,
-  ProjectsRoute: ProjectsRoute,
+  ProjectsRoute: ProjectsRouteWithChildren,
   ScholarsRoute: ScholarsRoute,
   MentorActiveRoute: MentorActiveRoute,
   MentorProfileRoute: MentorProfileRoute,
