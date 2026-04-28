@@ -1,5 +1,5 @@
 // localStorage-backed store. Structured so it can later swap to Supabase.
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import {
   DEMO_USERS, SEED_SCHOLARS, SEED_MENTORS, SEED_PROJECTS, SEED_REQUESTS, DEFAULT_MILESTONES,
   SEED_WORK_LOGS, SEED_WORK_LOG_COMMENTS,
