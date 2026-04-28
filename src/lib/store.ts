@@ -68,12 +68,31 @@ export const store = {
   reset: () => { state = defaultState(); emit(); },
 };
 
+function shallowEqual(a: any, b: any): boolean {
+  if (Object.is(a, b)) return true;
+  if (typeof a !== "object" || a === null || typeof b !== "object" || b === null) return false;
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (!Object.is(a[i], b[i])) return false;
+    return true;
+  }
+  const ak = Object.keys(a), bk = Object.keys(b);
+  if (ak.length !== bk.length) return false;
+  for (const k of ak) if (!Object.is(a[k], b[k])) return false;
+  return true;
+}
+
 export function useStore<T>(selector: (s: State) => T): T {
-  return useSyncExternalStore(
-    store.subscribe,
-    () => selector(store.get()),
-    () => selector(defaultState()),
-  );
+  const lastRef = useRef<{ has: boolean; value: T }>({ has: false, value: undefined as any });
+  const getSnapshot = () => {
+    const next = selector(store.get());
+    if (lastRef.current.has && shallowEqual(lastRef.current.value, next)) {
+      return lastRef.current.value;
+    }
+    lastRef.current = { has: true, value: next };
+    return next;
+  };
+  return useSyncExternalStore(store.subscribe, getSnapshot, () => selector(defaultState()));
 }
 
 // --- Auth ---
