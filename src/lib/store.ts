@@ -2,8 +2,9 @@
 import { useEffect, useSyncExternalStore } from "react";
 import {
   DEMO_USERS, SEED_SCHOLARS, SEED_MENTORS, SEED_PROJECTS, SEED_REQUESTS, DEFAULT_MILESTONES,
+  SEED_WORK_LOGS, SEED_WORK_LOG_COMMENTS,
 } from "./mockData";
-import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track } from "./types";
+import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track, WorkLog, WorkLogComment } from "./types";
 
 const KEY = "minerva-store-v1";
 
@@ -14,6 +15,8 @@ interface State {
   projects: Project[];
   requests: MentorRequest[];
   milestonesByScholar: Record<string, Milestone[]>;
+  workLogs: WorkLog[];
+  workLogComments: WorkLogComment[];
   airtable: { apiKey: string; baseId: string; tableName: string } | null;
   settings: {
     aiModel: string;
