@@ -7,7 +7,8 @@ import { useStore } from "@/lib/store";
 import { Modal } from "@/components/Modal";
 import { toast } from "sonner";
 import { timeAgo } from "@/lib/utils";
-import { ClipboardList, FileText } from "lucide-react";
+import { ClipboardList, FileText, BookOpen } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/mentor/active")({
   component: () => (<AuthGate allow={["mentor"]}><AppShell><Page/></AppShell></AuthGate>),
