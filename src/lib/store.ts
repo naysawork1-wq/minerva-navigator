@@ -166,6 +166,31 @@ export function toggleMilestone(scholarId: string, milestoneId: string) {
   store.set({ milestonesByScholar: { ...state.milestonesByScholar, [scholarId]: next } });
 }
 
+// --- Work logs ---
+export function addWorkLog(log: Omit<WorkLog, "id" | "createdAt">) {
+  const w: WorkLog = { ...log, id: `wl-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, createdAt: Date.now() };
+  store.set({ workLogs: [...state.workLogs, w] });
+  return w;
+}
+export function updateWorkLog(id: string, patch: Partial<WorkLog>) {
+  store.set({ workLogs: state.workLogs.map(w => w.id === id ? { ...w, ...patch } : w) });
+}
+export function deleteWorkLog(id: string) {
+  store.set({
+    workLogs: state.workLogs.filter(w => w.id !== id),
+    workLogComments: state.workLogComments.filter(c => c.logId !== id),
+  });
+}
+export function addWorkLogComment(c: Omit<WorkLogComment, "id" | "timestamp">) {
+  const cm: WorkLogComment = { ...c, id: `wlc-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, timestamp: Date.now() };
+  store.set({ workLogComments: [...state.workLogComments, cm] });
+  return cm;
+}
+export function projectProgressFromLogs(projectId: string): number {
+  const total = state.workLogs.filter(w => w.projectId === projectId).length;
+  return Math.min(100, Math.round((total / 20) * 100));
+}
+
 // --- Settings / airtable ---
 export function setAirtable(cfg: State["airtable"]) { store.set({ airtable: cfg }); }
 export function setSettings(patch: Partial<State["settings"]>) {
