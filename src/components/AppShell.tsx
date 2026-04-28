@@ -4,7 +4,7 @@ import { Avatar } from "./UI";
 import type { Role } from "@/lib/types";
 import {
   Search, Lightbulb, Users, FileText, Database, Inbox, UserCircle, FolderKanban,
-  GraduationCap, BookOpen, LayoutDashboard, Settings, ClipboardList, UserCog, LogOut, Menu, X,
+  GraduationCap, BookOpen, LayoutDashboard, Settings, ClipboardList, UserCog, LogOut, Menu, X, NotebookPen,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
@@ -12,7 +12,7 @@ const NAV: Record<Role, { to: string; label: string; icon: typeof Search }[]> = 
   consultant: [
     { to: "/scholars", label: "Scholar Search", icon: Search },
     { to: "/ideation", label: "Ideation", icon: Lightbulb },
-    { to: "/mentors", label: "Mentor Repository", icon: Users },
+    { to: "/mentors", label: "Mentor Gallery", icon: Users },
     { to: "/prd", label: "Generate PRD", icon: FileText },
     { to: "/projects", label: "Project Database", icon: Database },
   ],
@@ -23,6 +23,7 @@ const NAV: Record<Role, { to: string; label: string; icon: typeof Search }[]> = 
   ],
   scholar: [
     { to: "/scholar/project", label: "My Project", icon: BookOpen },
+    { to: "/scholar/work", label: "My Work", icon: NotebookPen },
   ],
   admin: [
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
