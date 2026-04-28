@@ -91,7 +91,7 @@ function Page() {
     const ba = bestMatchFor(a.mentor, project) ? 1 : 0;
     const bb = bestMatchFor(b.mentor, project) ? 1 : 0;
     if (ba !== bb) return bb - ba;
-    const order = { Available: 0, Limited: 1, Full: 2 } as const;
+    const order: Record<string, number> = { Available: 0, Limited: 1, Full: 2 };
     return order[a.avail.label] - order[b.avail.label];
   }), [filtered, project]);
 
