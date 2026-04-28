@@ -1,4 +1,4 @@
-import type { Scholar, Mentor, Project, MentorRequest, User, Milestone } from "./types";
+import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, WorkLog, WorkLogComment } from "./types";
 
 export const DEMO_USERS: (User & { password: string })[] = [
   { id: "u-c1", email: "consultant@athenaeducation.co.in", password: "minerva2024", name: "Riya Mehta", role: "consultant" },
