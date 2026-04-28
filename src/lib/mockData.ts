@@ -163,6 +163,9 @@ export const DEFAULT_MILESTONES: Milestone[] = [
 export const SEED_PROJECTS: Project[] = [];
 export const SEED_REQUESTS: MentorRequest[] = [];
 
+export const SEED_WORK_LOGS: WorkLog[] = [];
+export const SEED_WORK_LOG_COMMENTS: WorkLogComment[] = [];
+
 export const EXPERTISE_TAGS = [
   "Biomedical","Wearable sensors","Rehabilitation tech","Embedded systems","AI / ML",
   "Computer vision","Robotics","IoT","3D printing / CAD","Data science","Policy research",
@@ -171,3 +174,5 @@ export const EXPERTISE_TAGS = [
 ];
 
 export const WEEK_DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+export const WORK_LOG_TAGS = ["Research","Build","Testing","Writing","Mentor Session"] as const;
