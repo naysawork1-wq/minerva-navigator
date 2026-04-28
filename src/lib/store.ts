@@ -33,6 +33,8 @@ const defaultState = (): State => ({
   projects: SEED_PROJECTS,
   requests: SEED_REQUESTS,
   milestonesByScholar: {},
+  workLogs: SEED_WORK_LOGS,
+  workLogComments: SEED_WORK_LOG_COMMENTS,
   airtable: null,
   settings: {
     aiModel: "gpt-4o-mini",
