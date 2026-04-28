@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ScholarsRouteImport } from './routes/scholars'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as IdeationRouteImport } from './routes/ideation'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ScholarsRoute = ScholarsRouteImport.update({
@@ -23,6 +24,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IdeationRoute = IdeationRouteImport.update({
+  id: '/ideation',
+  path: '/ideation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
   '/scholars': typeof ScholarsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
   '/scholars': typeof ScholarsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ideation': typeof IdeationRoute
   '/login': typeof LoginRoute
   '/scholars': typeof ScholarsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/scholars'
+  fullPaths: '/' | '/ideation' | '/login' | '/scholars'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/scholars'
-  id: '__root__' | '/' | '/login' | '/scholars'
+  to: '/' | '/ideation' | '/login' | '/scholars'
+  id: '__root__' | '/' | '/ideation' | '/login' | '/scholars'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IdeationRoute: typeof IdeationRoute
   LoginRoute: typeof LoginRoute
   ScholarsRoute: typeof ScholarsRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ideation': {
+      id: '/ideation'
+      path: '/ideation'
+      fullPath: '/ideation'
+      preLoaderRoute: typeof IdeationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IdeationRoute: IdeationRoute,
   LoginRoute: LoginRoute,
   ScholarsRoute: ScholarsRoute,
 }
