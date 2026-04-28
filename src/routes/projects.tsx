@@ -46,8 +46,13 @@ function Page() {
                   <span>{p.timeline}</span>
                   <span>{p.acceptedAt ? `Accepted ${timeAgo(p.acceptedAt)}` : "Rejected"}</span>
                 </div>
-                {tab === "accepted" && !p.assignedMentorId && (
-                  <button className="btn-teal w-full mt-3" onClick={() => navigate({ to: "/mentors" as any, search: { projectId: p.id } as any })}>Allocate mentor</button>
+                {tab === "accepted" && (
+                  <div className="flex gap-2 mt-3">
+                    {!p.assignedMentorId && (
+                      <button className="btn-teal flex-1" onClick={() => navigate({ to: "/mentors" as any, search: { projectId: p.id } as any })}>Allocate</button>
+                    )}
+                    <button className="btn-ghost flex-1" onClick={() => navigate({ to: "/projects/$projectId/progress" as any, params: { projectId: p.id } as any })}>View progress</button>
+                  </div>
                 )}
               </div>
             );
