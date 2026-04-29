@@ -28,7 +28,6 @@ import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
 import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
 import { Route as AdminIdeasRouteImport } from './routes/admin.ideas'
 import { Route as AdminConsultantsRouteImport } from './routes/admin.consultants'
-import { Route as AdminIdeasRouteImport } from './routes/admin.ideas'
 import { Route as ProjectsProjectIdProgressRouteImport } from './routes/projects.$projectId.progress'
 import { Route as MentorLogsProjectIdRouteImport } from './routes/mentor.logs.$projectId'
 
@@ -125,11 +124,6 @@ const AdminIdeasRoute = AdminIdeasRouteImport.update({
 const AdminConsultantsRoute = AdminConsultantsRouteImport.update({
   id: '/consultants',
   path: '/consultants',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminIdeasRoute = AdminIdeasRouteImport.update({
-  id: '/ideas',
-  path: '/ideas',
   getParentRoute: () => AdminRoute,
 } as any)
 const ProjectsProjectIdProgressRoute =
