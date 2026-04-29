@@ -1,4 +1,4 @@
-import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, WorkLog, WorkLogComment } from "./types";
+import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, WorkLog, WorkLogComment, Idea } from "./types";
 
 export const DEMO_USERS: (User & { password: string })[] = [
   { id: "u-c1", email: "consultant@athenaeducation.co.in", password: "minerva2024", name: "Riya Mehta", role: "consultant" },
@@ -165,6 +165,12 @@ export const SEED_REQUESTS: MentorRequest[] = [];
 
 export const SEED_WORK_LOGS: WorkLog[] = [];
 export const SEED_WORK_LOG_COMMENTS: WorkLogComment[] = [];
+
+export const SEED_IDEAS: Idea[] = [
+  { id: "i-1", title: "Low-cost EMG-controlled prosthetic hand", description: "Affordable open-source prosthetic with surface EMG control for amputees in tier-2 cities. Combines 3D-printed mechanical design with ESP32 firmware and a clinic pilot study.", sourceLinks: ["https://openbionics.com/"], category: "Robotics", createdAt: Date.now() - 86400000 * 4, createdBy: "Admin Office" },
+  { id: "i-2", title: "Crop disease early-warning IoT mesh", description: "LoRa mesh of soil + leaf sensors deployed across a small farm; ML model classifies disease risk from image + sensor fusion.", sourceLinks: [], category: "IoT", createdAt: Date.now() - 86400000 * 2, createdBy: "Admin Office" },
+  { id: "i-3", title: "Air-quality dashboard for Indian schools", description: "Public web dashboard aggregating CPCB + low-cost sensor data, with policy-grade write-up suitable for Pangea track.", sourceLinks: ["https://airnow.gov/"], category: "Website", createdAt: Date.now() - 86400000, createdBy: "Admin Office" },
+];
 
 export const EXPERTISE_TAGS = [
   "Biomedical","Wearable sensors","Rehabilitation tech","Embedded systems","AI / ML",

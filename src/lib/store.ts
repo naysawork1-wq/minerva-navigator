@@ -2,9 +2,9 @@
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import {
   DEMO_USERS, SEED_SCHOLARS, SEED_MENTORS, SEED_PROJECTS, SEED_REQUESTS, DEFAULT_MILESTONES,
-  SEED_WORK_LOGS, SEED_WORK_LOG_COMMENTS,
+  SEED_WORK_LOGS, SEED_WORK_LOG_COMMENTS, SEED_IDEAS,
 } from "./mockData";
-import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track, WorkLog, WorkLogComment } from "./types";
+import type { Scholar, Mentor, Project, MentorRequest, User, Milestone, Track, WorkLog, WorkLogComment, Idea } from "./types";
 
 const KEY = "minerva-store-v1";
 
@@ -17,6 +17,7 @@ interface State {
   milestonesByScholar: Record<string, Milestone[]>;
   workLogs: WorkLog[];
   workLogComments: WorkLogComment[];
+  ideas: Idea[];
   airtable: { apiKey: string; baseId: string; tableName: string } | null;
   settings: {
     aiModel: string;
@@ -35,6 +36,7 @@ const defaultState = (): State => ({
   milestonesByScholar: {},
   workLogs: SEED_WORK_LOGS,
   workLogComments: SEED_WORK_LOG_COMMENTS,
+  ideas: SEED_IDEAS,
   airtable: null,
   settings: {
     aiModel: "gpt-4o-mini",
@@ -221,4 +223,17 @@ export function setScholarTrack(id: string, track: Track) { updateScholar(id, { 
 // hydrate trigger (keeps SSR safe)
 export function useHydrate() {
   useEffect(() => { state = load(); listeners.forEach(l => l()); }, []);
+}
+
+// --- Ideas ---
+export function addIdea(i: Omit<Idea, "id" | "createdAt">) {
+  const idea: Idea = { ...i, id: `i-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, createdAt: Date.now() };
+  store.set({ ideas: [idea, ...state.ideas] });
+  return idea;
+}
+export function updateIdea(id: string, patch: Partial<Idea>) {
+  store.set({ ideas: state.ideas.map(i => i.id === id ? { ...i, ...patch } : i) });
+}
+export function deleteIdea(id: string) {
+  store.set({ ideas: state.ideas.filter(i => i.id !== id) });
 }

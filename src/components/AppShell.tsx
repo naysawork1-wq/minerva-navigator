@@ -27,6 +27,7 @@ const NAV: Record<Role, { to: string; label: string; icon: typeof Search }[]> = 
   ],
   admin: [
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/admin/ideas", label: "Ideas", icon: Lightbulb },
     { to: "/admin/scholars", label: "Scholars", icon: GraduationCap },
     { to: "/admin/mentors", label: "Mentors", icon: Users },
     { to: "/admin/consultants", label: "Consultants", icon: UserCog },
