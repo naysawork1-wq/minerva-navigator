@@ -4,9 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "preflight": "node scripts/ensure-route-tree.mjs",
+    "dev": "npm run preflight && vite dev",
+    "build": "npm run preflight && vite build",
+    "build:dev": "npm run preflight && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
