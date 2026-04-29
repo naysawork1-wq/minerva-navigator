@@ -155,7 +155,6 @@ export interface FileRoutesByFullPath {
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
   '/admin/ideas': typeof AdminIdeasRoute
-  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scholars': typeof AdminScholarsRoute
@@ -178,7 +177,6 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
-  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
@@ -203,7 +201,6 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
-  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
@@ -230,7 +227,6 @@ export interface FileRouteTypes {
     | '/scholars'
     | '/admin/consultants'
     | '/admin/ideas'
-    | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
     | '/admin/scholars'
@@ -254,7 +250,6 @@ export interface FileRouteTypes {
     | '/scholars'
     | '/admin/consultants'
     | '/admin/ideas'
-    | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
     | '/admin/scholars'
@@ -277,7 +272,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/scholars'
     | '/admin/consultants'
-    | '/admin/ideas'
     | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
