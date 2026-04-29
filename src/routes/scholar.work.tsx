@@ -8,7 +8,8 @@ import { WorkLogTimeline } from "@/components/WorkLogTimeline";
 import { WorkLogModal, type WorkLogFormValues } from "@/components/WorkLogModal";
 import { Modal } from "@/components/Modal";
 import type { WorkLog } from "@/lib/types";
-import { Plus, Clock, ListChecks } from "lucide-react";
+import { Plus, Clock, ListChecks, Download } from "lucide-react";
+import { exportWorkLogsPdf } from "@/lib/pdf";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/scholar/work")({
@@ -68,7 +69,14 @@ function Page() {
         eyebrow="Research journal"
         title="My work"
         description="A daily record of your build, research and writing — visible to your mentor and consultant."
-        actions={<button className="btn-teal" onClick={() => setAdding(true)}><Plus className="w-4 h-4"/> Add work log</button>}
+        actions={<>
+          <button className="btn-ghost" onClick={() => {
+            if (logs.length === 0) { toast.error("No logs to export yet"); return; }
+            exportWorkLogsPdf({ scholar: scholar!, project: project!, mentorName: mentor?.name, logs });
+            toast.success("PDF downloaded");
+          }}><Download className="w-4 h-4"/> <span className="hidden sm:inline">Download PDF</span></button>
+          <button className="btn-teal" onClick={() => setAdding(true)}><Plus className="w-4 h-4"/> Add work log</button>
+        </>}
       />
 
       {/* Project summary */}
