@@ -100,6 +100,20 @@ export interface WorkLogComment {
   timestamp: number;
 }
 
+export const IDEA_CATEGORIES = ["ML","IoT","Robotics","App","Website","Tech Research","Research","Other"] as const;
+export type IdeaCategory = typeof IDEA_CATEGORIES[number];
+
+export interface Idea {
+  id: string;
+  title: string;
+  description: string;
+  sourceLinks: string[];
+  category: IdeaCategory;
+  customCategory?: string;
+  createdAt: number;
+  createdBy: string;
+}
+
 export interface WorkLog {
   id: string;
   scholarId: string;
