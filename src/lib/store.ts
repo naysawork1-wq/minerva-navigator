@@ -224,3 +224,16 @@ export function setScholarTrack(id: string, track: Track) { updateScholar(id, { 
 export function useHydrate() {
   useEffect(() => { state = load(); listeners.forEach(l => l()); }, []);
 }
+
+// --- Ideas ---
+export function addIdea(i: Omit<Idea, "id" | "createdAt">) {
+  const idea: Idea = { ...i, id: `i-${Date.now()}-${Math.random().toString(36).slice(2,5)}`, createdAt: Date.now() };
+  store.set({ ideas: [idea, ...state.ideas] });
+  return idea;
+}
+export function updateIdea(id: string, patch: Partial<Idea>) {
+  store.set({ ideas: state.ideas.map(i => i.id === id ? { ...i, ...patch } : i) });
+}
+export function deleteIdea(id: string) {
+  store.set({ ideas: state.ideas.filter(i => i.id !== id) });
+}
