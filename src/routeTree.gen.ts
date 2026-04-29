@@ -26,6 +26,7 @@ import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminScholarsRouteImport } from './routes/admin.scholars'
 import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
 import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
+import { Route as AdminIdeasRouteImport } from './routes/admin.ideas'
 import { Route as AdminConsultantsRouteImport } from './routes/admin.consultants'
 import { Route as ProjectsProjectIdProgressRouteImport } from './routes/projects.$projectId.progress'
 import { Route as MentorLogsProjectIdRouteImport } from './routes/mentor.logs.$projectId'
@@ -115,6 +116,11 @@ const AdminMentorsRoute = AdminMentorsRouteImport.update({
   path: '/mentors',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminIdeasRoute = AdminIdeasRouteImport.update({
+  id: '/ideas',
+  path: '/ideas',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminConsultantsRoute = AdminConsultantsRouteImport.update({
   id: '/consultants',
   path: '/consultants',
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scholars': typeof AdminScholarsRoute
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scholars': typeof AdminScholarsRoute
@@ -187,6 +195,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRouteWithChildren
   '/scholars': typeof ScholarsRoute
   '/admin/consultants': typeof AdminConsultantsRoute
+  '/admin/ideas': typeof AdminIdeasRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scholars': typeof AdminScholarsRoute
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/scholars'
     | '/admin/consultants'
+    | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
     | '/admin/scholars'
@@ -233,6 +243,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/scholars'
     | '/admin/consultants'
+    | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
     | '/admin/scholars'
@@ -255,6 +266,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/scholars'
     | '/admin/consultants'
+    | '/admin/ideas'
     | '/admin/mentors'
     | '/admin/requests'
     | '/admin/scholars'
@@ -406,6 +418,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMentorsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/ideas': {
+      id: '/admin/ideas'
+      path: '/ideas'
+      fullPath: '/admin/ideas'
+      preLoaderRoute: typeof AdminIdeasRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/consultants': {
       id: '/admin/consultants'
       path: '/consultants'
@@ -432,6 +451,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminConsultantsRoute: typeof AdminConsultantsRoute
+  AdminIdeasRoute: typeof AdminIdeasRoute
   AdminMentorsRoute: typeof AdminMentorsRoute
   AdminRequestsRoute: typeof AdminRequestsRoute
   AdminScholarsRoute: typeof AdminScholarsRoute
@@ -440,6 +460,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminConsultantsRoute: AdminConsultantsRoute,
+  AdminIdeasRoute: AdminIdeasRoute,
   AdminMentorsRoute: AdminMentorsRoute,
   AdminRequestsRoute: AdminRequestsRoute,
   AdminScholarsRoute: AdminScholarsRoute,
