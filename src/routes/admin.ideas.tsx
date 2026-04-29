@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AuthGate } from "@/components/AuthGate";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader, Empty, Tag, Badge } from "@/components/UI";
@@ -219,7 +219,7 @@ function IdeaModal({ open, onClose, onSave, initial, mode }: {
   const [links, setLinks] = useState<string[]>([]);
 
   // reset on open
-  useMemo(() => {
+  useEffect(() => {
     if (open) {
       if (initial) {
         setTitle(initial.title); setDescription(initial.description);
